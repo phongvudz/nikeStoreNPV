@@ -1,4 +1,6 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { setAddItemToCart, setOpenCart } from "../app/CartSlice";
 
 const Item = ({
   ifExists,
@@ -12,6 +14,21 @@ const Item = ({
   color,
   shadow,
 }) => {
+  const dispatch = useDispatch();
+
+  const addToCart = () => {
+    const item = { id, title, text, img, color, shadow, price };
+    dispatch(setAddItemToCart(item));
+  };
+
+  const onCartToggle = () => {
+    dispatch(
+      setOpenCart({
+        cartState: true,
+      })
+    );
+  };
+
   return (
     <>
       <div
@@ -58,6 +75,7 @@ const Item = ({
         <div className="flex items-center justify-between w-30 my-2 gap-3">
           <button
             type="button"
+            onClick={() => addToCart()}
             className="bg-white/90 rounded blur-effect-theme button-theme p-0.5 shadow shadow-sky-200"
           >
             <svg
@@ -75,6 +93,10 @@ const Item = ({
           </button>
           <button
             type="button"
+            onClick={() => {
+              addToCart();
+              onCartToggle();
+            }}
             className="bg-white/90 rounded blur-effect-theme text-sm px-2 py-1 button-theme shadow shadow-sky-200"
           >
             {btn}
@@ -82,7 +104,7 @@ const Item = ({
         </div>
         <div
           className={`flex items-center ${
-            ifExists ? "absolute top-5 right-1" : "justity-center"
+            ifExists ? "absolute top-5 right-1" : "justify-center"
           }`}
         >
           <img

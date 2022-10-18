@@ -1,11 +1,14 @@
 import React from "react";
 
-const CartCount = () => {
+const CartCount = ({ onCartToggle, onClearCartItems, TotalQuantity }) => {
   return (
     <>
       <div className="flex h-11 bg-white/75 items-center justify-between px-3 sticky top-0 left-0 right-0 w-full">
         <div className="flex items-center gap-3">
-          <div className="grid items-center cursor-pointer">
+          <div
+            className="grid items-center cursor-pointer"
+            onClick={onCartToggle}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -25,7 +28,7 @@ const CartCount = () => {
             <h1 className="text-base font-medium">
               Your Cart{" "}
               <span className="bg-theme-cart text-slate-100 px-1 py-0.5 rounded font-normal text-xs">
-                (Items)
+                ({TotalQuantity} Items)
               </span>
             </h1>
           </div>
@@ -33,7 +36,8 @@ const CartCount = () => {
         <div>
           <button
             type="button"
-            className="rounded bg-theme-cart text-slate-100 active:scale-90 p-0.5"
+            // onClick={onClearCartItems}
+            className="rounded bg-theme-cart active:scale-90 p-0.5"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

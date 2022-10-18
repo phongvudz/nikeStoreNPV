@@ -1,8 +1,21 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectTotalQTY, setOpenCart } from "../app/CartSlice";
 import logo from "../assets/logo.png";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
+  const dispatch = useDispatch();
+
+  const TotalQTY = useSelector(selectTotalQTY);
+
+  const onCartToggle = () => {
+    dispatch(
+      setOpenCart({
+        cartState: true,
+      })
+    );
+  };
 
   const onNavScroll = () => {
     if (window.scrollY > 30) {
@@ -75,6 +88,7 @@ const Navbar = () => {
             <li>
               <button
                 type="button"
+                onClick={onCartToggle}
                 className="border-none relative transition-all duration-300 active:scale-110  outline-none"
               >
                 <svg
@@ -100,7 +114,7 @@ const Navbar = () => {
                       : " bg-slate-100 text-slate-900 shadow-slate-100"
                   }`}
                 >
-                  0
+                  {TotalQTY}
                 </h1>
               </button>
             </li>

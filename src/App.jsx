@@ -22,7 +22,7 @@ function App() {
   return (
     <>
       <Navbar />
-      {/* <Cart /> */}
+      <Cart />
       <main className="flex flex-col gap-16 relative">
         <Hero heroApi={heroApi} />
         <Sales endpoint={popularsales} ifExists />
