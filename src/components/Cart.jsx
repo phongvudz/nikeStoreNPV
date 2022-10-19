@@ -7,7 +7,7 @@ import {
   setCloseCart,
   selectCartState,
   selectCartItems,
-  setClearCartItems,
+  setClearCartItem,
   selectTotalAmount,
   selectTotalQTY,
   setGetTotals,
@@ -20,12 +20,12 @@ const Cart = () => {
   const TotalPrice = useSelector(selectTotalAmount);
   const TotalQuantity = useSelector(selectTotalQTY);
 
-  // useEffect(() => {
-  //   dispatch(setGetTotals());
-  // }, [cartItems, dispatch]);
+  useEffect(() => {
+    dispatch(setGetTotals());
+  }, [cartItems, dispatch]);
 
   const onClearCartItems = () => {
-    dispatch(setClearCartItems());
+    dispatch(setClearCartItem());
   };
 
   const onCartToggle = () => {
